@@ -17,7 +17,14 @@ dynamo create-project atlas
 }}}
 
 Once the project is created, it is ready to be configured, built and
-executed.
+executed.  The new project has the following structure:
+
+||bin||Directory which will contain the application server||
+||src||The application sources (Ada)||
+||web||The presentation pages (HTML, XHTML, Javascript, ...)||
+||web/css||The CSS presentation pages ||
+||web/images||The application images||
+||bundles||The resource bundles for application localization||
 
 = Configuring the project =
 
