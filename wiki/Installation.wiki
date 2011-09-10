@@ -1,0 +1,53 @@
+#summary Build and installation notes
+
+= Requirements =
+
+AWA and all its components have been compiled and tested on the following
+platforms:
+
+  * GNAT 2011 on Windows7 (gcc 4.5.3)
+  * GNAT 2011 on Ubuntu (gcc 4.5.3)
+  * gcc 4.4.3 on Ubuntu
+
+You will need:
+
+  * The AWS web server (compiled with SSL support),
+  * The XML/Ada library,
+
+To build on Windows, you will need the [http://www.mingw.org/ Mingw32 Msys] package.  To be able to create a new project with Dynamo you will also need [http://gnuwin32.sourceforge.net/packages/autoconf.htm AutoConf for Windows].
+
+= Configuration =
+
+On Unix platforms, configure with:
+
+{{{
+  ./configure --prefix=/usr
+}}}
+
+On Windows, you can configure with:
+
+{{{
+  ./configure --prefix=d:/installation/dir
+}}}
+
+= Build =
+
+For all plateform, you should build with make as follows:
+
+{{{
+  make
+}}}
+
+= Manual Build =
+
+In case of problem, you could also build by using gnatmake or gprbuild.
+In that case, you have to build each component individually:
+
+{{{
+  cd util && gnatmake -p -Putil
+  cd el && gnatmake -p -Pel
+  cd asf && gnatmake -p -Pasf
+  cd ado && gnatmake -p -Pado
+  cd awa && gnatmake -p -Pawa
+  cd dynamo && gnatmake -p -Pdynamo
+}}}
