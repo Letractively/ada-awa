@@ -1,9 +1,5 @@
 #summary Getting Started with AWA
 
-= Introduction =
-
-Add your content here.
-
 
 = Creating a project =
 
@@ -43,6 +39,13 @@ The Makefile will invoke `gnatmake` to build the application.
 make
 }}}
 
+You may also invoke `gnatmake` directly.  The GNAT project has the
+name of the application.
+
+{{{
+gnatmake -Patlas
+}}}
+
 = Running the project =
 
 Once the project is built, the `bin` directory will contain the
@@ -63,3 +66,16 @@ tells you the URL you should connect to.
 Point your browser to that URL to look at the page.
 
 http://ada-awa.googlecode.com/svn/wiki/dynamo-application.png
+
+= Adding a new page =
+
+Adding a new page is quite easy.  You just have to create a new XHTML file
+somewhere in the `web` directory.  To help you, you can use `dynamo` to
+create a page that you can modify.  When you invoke the following command:
+
+{{{
+dynamo add-page main
+}}}
+
+The file `web/main.xhtml` is created and your application server will now
+expose a new web page `main.html`.
