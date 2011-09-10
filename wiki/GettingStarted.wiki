@@ -8,8 +8,49 @@ Add your content here.
 = Creating a project =
 
 First, you will use the `dynamo` command to create your new project.
-
+You must choose a project name.  This must be a valid Ada identifier
+as it will be used for the application root package name.
+The project files are created in the current directory.
 
 {{{
 dynamo create-project atlas
 }}}
+
+Once the project is created, it is ready to be configured, built and
+executed.
+
+= Configuring the project =
+
+Your new project must be configured:
+
+{{{
+./configure
+}}}
+
+= Building the project =
+
+The project contains a Makefile as well as a GNAT project file.
+The Makefile will invoke `gnatmake` to build the application.
+
+{{{
+make
+}}}
+
+= Running the project =
+
+Once the project is built, the `bin` directory will contain the
+application server.  You just have to execute it.  The application server
+contains the name of your project.
+
+{{{
+bin/atlas-server
+}}}
+
+When the server starts, it prints some log messages and one of them
+tells you the URL you should connect to.
+
+{{{
+[2011-09-10 20:35:43] INFO  - Atlas.Server - Connect you browser to: http://localhost:8080/atlas/index.html
+}}}
+
+Point your browser to that URL to look at the page.
