@@ -54,3 +54,5 @@ tells you the URL you should connect to.
 }}}
 
 Point your browser to that URL to look at the page.
+
+http://ada-awa.googlecode.com/svn/wiki/dynamo-application.png
