@@ -1,0 +1,15 @@
+#summary Getting Started with AWA
+
+= Introduction =
+
+Add your content here.
+
+
+= Creating a project =
+
+First, you will use the `dynamo` command to create your new project.
+
+
+{{{
+dynamo create-project atlas
+}}}
