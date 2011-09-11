@@ -1,0 +1,23 @@
+<ui:composition template="/WEB-INF/layouts/anonymous.xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:u="http://code.google.com/p/ada-asf/util"
+        xmlns:h="http://java.sun.com/jsf/html">
+    <ui:param name="title" value="#{userMsg.login_page_title}"/>
+
+    <!-- Main page body -->
+    <ui:define name="pageBody">
+      <div id='awa-content'>
+        <div class='awa-side1'>
+          <ui:include src="login-openid.xhtml">
+            <ui:param name="title" value="#{userMsg.login_openid_title}"/>
+          </ui:include>
+        </div>
+        <div class='awa-side2'>
+          <ui:include src="login-form.xhtml"/>
+        </div>
+      </div>
+    </ui:define>
+</ui:composition>
+

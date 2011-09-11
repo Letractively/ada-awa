@@ -1,0 +1,27 @@
+<div class='awa-login'
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:u="http://code.google.com/p/ada-asf/util"
+        xmlns:h="http://java.sun.com/jsf/html">
+    <h2>#{title}</h2>
+    <ul class='openid-login'>
+      <li>
+        <a href="#{contextPath}/auth/auth/google" title="#{userMsg.openid_google_auth}" class='openid-google'>
+          <em/>
+        </a>
+      </li>
+      <li>
+        <a href="#{contextPath}/auth/auth/yahoo" title="#{userMsg.openid_yahoo_auth}" class='openid-yahoo'>
+          <em/>
+        </a>
+      </li>
+      <li>
+        <a href="#{contextPath}/auth/auth/orange" title="#{userMsg.openid_orange_auth}" class='openid-orange'>
+          <em/>
+        </a>
+      </li>
+    </ul>
+</div>
+
+

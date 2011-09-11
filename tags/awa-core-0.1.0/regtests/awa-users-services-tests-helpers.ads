@@ -1,0 +1,59 @@
+-----------------------------------------------------------------------
+--  users-tests-helpers -- Helpers for user creation
+--  Copyright (C) 2011 Stephane Carrez
+--  Written by Stephane Carrez (Stephane.Carrez@gmail.com)
+--
+--  Licensed under the Apache License, Version 2.0 (the "License");
+--  you may not use this file except in compliance with the License.
+--  You may obtain a copy of the License at
+--
+--      http://www.apache.org/licenses/LICENSE-2.0
+--
+--  Unless required by applicable law or agreed to in writing, software
+--  distributed under the License is distributed on an "AS IS" BASIS,
+--  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+--  See the License for the specific language governing permissions and
+--  limitations under the License.
+-----------------------------------------------------------------------
+
+with Security.Contexts;
+with AWA.Users.Models;
+with AWA.Services.Contexts;
+package AWA.Users.Services.Tests.Helpers is
+
+   type Test_User is limited record
+      Context : AWA.Services.Contexts.Service_Context;
+      Manager : User_Service_Access := null;
+      User    : AWA.Users.Models.User_Ref;
+      Email   : AWA.Users.Models.Email_Ref;
+      Session : AWA.Users.Models.Session_Ref;
+   end record;
+
+   --  Initialize the service context.
+   procedure Initialize (Principal : in out Test_User);
+
+   --  Create a test user associated with the given email address.
+   --  Get an open session for that user.  If the user already exists, no error is reported.
+   procedure Create_User (Principal : in out Test_User;
+                          Email     : in String);
+
+   --  Create a test user for a new test and get an open session.
+   procedure Create_User (Principal : in out Test_User);
+
+   --  Find the access key associated with a user (if any).
+   procedure Find_Access_Key (Principal : in out Test_User;
+                              Email     : in String;
+							  Key       : in out AWA.Users.Models.Access_Key_Ref);
+
+   --  Login a user and create a session
+   procedure Login (Principal : in out Test_User);
+
+   --  Logout the user and closes the current session.
+   procedure Logout (Principal : in out Test_User);
+
+   --  Simulate a user login in the given service context.
+   procedure Login (Context : in out AWA.Services.Contexts.Service_Context;
+                    Sec_Context : in out Security.Contexts.Security_Context;
+                    Email   : in String);
+
+end AWA.Users.Services.Tests.Helpers;
