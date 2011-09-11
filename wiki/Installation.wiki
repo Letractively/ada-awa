@@ -51,3 +51,11 @@ In that case, you have to build each component individually:
   cd awa && gnatmake -p -Pawa
   cd dynamo && gnatmake -p -Pdynamo
 }}}
+
+= Installation =
+
+After the packages are built, you can install them as follows:
+
+{{{
+make install
+}}}
