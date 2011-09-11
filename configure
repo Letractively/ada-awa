@@ -553,9 +553,18 @@ PACKAGE_STRING=
 PACKAGE_BUGREPORT=
 PACKAGE_URL=
 
-ac_unique_file="support/build.config.in"
+ac_unique_file="src/awa.ads"
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
+ADO_DB_SQLITE
+SQLITE3
+ADO_DB_MYSQL
+MYSQL
+ADO_DIR
+ASF_DIR
+EL_DIR
+UTIL_DIR
+AWA_LIBDIR
 EXEC_PREFIX
 AWA_MICRO_VERSION
 AWA_MINOR_VERSION
@@ -626,9 +635,10 @@ SHELL'
 ac_subst_files=''
 ac_user_opts='
 enable_option_checking
-enable_aunit
-enable_xmlada
-enable_aws
+with_ada_util
+with_ada_el
+with_ada_asf
+with_ada_ado
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1247,13 +1257,17 @@ if test -n "$ac_init_help"; then
 
   cat <<\_ACEOF
 
-Optional Features:
-  --disable-option-checking  ignore unrecognized --enable/--with options
-  --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
-  --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
-  --enable-aunit          build AUnit provided by AWA
-  --enable-xmlada         build XML/Ada provided by AWA
-  --enable-aws            build AWS provided by AWA
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-ada-util=x       Path for the Ada Utility library
+                          (code.google.com/p/ada-util)
+  --with-ada-el=x         Path for the Ada Expression Language library
+                          (code.google.com/p/ada-el)
+  --with-ada-asf=x        Path for the Ada Server Faces library
+                          (code.google.com/p/ada-asf)
+  --with-ada-ado=x        Path for the Ada Database Objects library
+                          (code.google.com/p/ada-ado)
 
 Some influential environment variables:
   CC          C compiler command
@@ -1874,8 +1888,6 @@ AWA_MAJOR_VERSION=0
 AWA_MINOR_VERSION=1
 AWA_MICRO_VERSION=0
 AWA_VERSION=$AWA_MAJOR_VERSION.$AWA_MINOR_VERSION.$AWA_MICRO_VERSION
-
-AWA_PACKAGES="ada-util-1.3.0 ada-el-1.2.0 ada-asf-0.2.0 ada-ado-0.2.0 ada-awa-0.1.0 dynamo-0.4.0"
 
 # checking for local tools
 ac_ext=c
@@ -2897,138 +2909,249 @@ fi
 EXEC_PREFIX="$prefix"
 
 
-PACKAGES="$AWA_PACKAGES"
+AWA_LIBDIR="lib"
 
-# Check whether --enable-aunit was given.
-if test "${enable_aunit+set}" = set; then :
-  enableval=$enable_aunit; ENABLE_AUNIT=$enableval
+
+##########################################
+# Ada Util library
+##########################################
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking Ada Utility library (code.google.com/p/ada-util)" >&5
+$as_echo_n "checking Ada Utility library (code.google.com/p/ada-util)... " >&6; }
+
+# Check whether --with-ada-util was given.
+if test "${with_ada_util+set}" = set; then :
+  withval=$with_ada_util;
+  UTIL_DIR=${withval}/
+
 else
-  ENABLE_AUNIT=no
+
+  echo "with \"util\"; project t is for Source_Dirs use (); end t;" > t.gpr
+  gnatmake -p -Pt >/dev/null 2>/dev/null
+  if test $? -eq 0; then
+    UTIL_DIR=
+  else
+    UTIL_DIR=../util/
+  fi;
+  rm -f t.gpr
+
 fi
 
+echo "with \"${UTIL_DIR}util\"; project t is for Source_Dirs use (); end t;" > t.gpr
+gnatmake -p -Pt >/dev/null 2>/dev/null
+if test $? -ne 0 ; then
+   rm -f t.gpr
+   as_fn_error "Ada Utility library not found in ${UTIL_DIR}" "$LINENO" 5
+fi
+rm -f t.gpr
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: ${UTIL_DIR}" >&5
+$as_echo "${UTIL_DIR}" >&6; }
 
-# Check whether --enable-xmlada was given.
-if test "${enable_xmlada+set}" = set; then :
-  enableval=$enable_xmlada; ENABLE_XMLADA=$enableval
+
+##########################################
+# Ada Expression Language library
+##########################################
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking Ada Expression Language library (code.google.com/p/ada-el)" >&5
+$as_echo_n "checking Ada Expression Language library (code.google.com/p/ada-el)... " >&6; }
+
+# Check whether --with-ada-el was given.
+if test "${with_ada_el+set}" = set; then :
+  withval=$with_ada_el;
+  EL_DIR=${withval}/
+
 else
-  ENABLE_XMLADA=no
+
+  echo "with \"el\"; project t is for Source_Dirs use (); end t;" > t.gpr
+  gnatmake -p -Pt >/dev/null 2>/dev/null
+  if test $? -eq 0; then
+    EL_DIR=
+  else
+    EL_DIR=../el/
+  fi;
+  rm -f t.gpr
+
 fi
 
+echo "with \"${EL_DIR}el\"; project t is for Source_Dirs use (); end t;" > t.gpr
+gnatmake -p -Pt >/dev/null 2>/dev/null
+if test $? -ne 0 ; then
+   rm -f t.gpr
+   as_fn_error "Ada Expression Language library not found in ${EL_DIR}" "$LINENO" 5
+fi
+rm -f t.gpr
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: ${EL_DIR}" >&5
+$as_echo "${EL_DIR}" >&6; }
 
-# Check whether --enable-aws was given.
-if test "${enable_aws+set}" = set; then :
-  enableval=$enable_aws; ENABLE_AWS=$enableval
+
+##########################################
+# Ada Server Faces library
+##########################################
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking Ada Server Faces library (code.google.com/p/ada-asf)" >&5
+$as_echo_n "checking Ada Server Faces library (code.google.com/p/ada-asf)... " >&6; }
+
+# Check whether --with-ada-asf was given.
+if test "${with_ada_asf+set}" = set; then :
+  withval=$with_ada_asf;
+  ASF_DIR=${withval}/
+
 else
-  ENABLE_AWS=no
+
+  echo "with \"asf\"; project t is for Source_Dirs use (); end t;" > t.gpr
+  gnatmake -p -Pt >/dev/null 2>/dev/null
+  if test $? -eq 0; then
+    ASF_DIR=
+  else
+    ASF_DIR=../asf/
+  fi;
+  rm -f t.gpr
+
+fi
+
+echo "with \"${ASF_DIR}asf\"; project t is for Source_Dirs use (); end t;" > t.gpr
+gnatmake -p -Pt >/dev/null 2>/dev/null
+if test $? -ne 0 ; then
+   rm -f t.gpr
+   as_fn_error "Ada Server Faces library not found in ${ASF_DIR}" "$LINENO" 5
+fi
+rm -f t.gpr
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: ${ASF_DIR}" >&5
+$as_echo "${ASF_DIR}" >&6; }
+
+
+##########################################
+# Ada Database Objects library
+##########################################
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking Ada Database Objects library (code.google.com/p/ada-ado)" >&5
+$as_echo_n "checking Ada Database Objects library (code.google.com/p/ada-ado)... " >&6; }
+
+# Check whether --with-ada-ado was given.
+if test "${with_ada_ado+set}" = set; then :
+  withval=$with_ada_ado;
+  ADO_DIR=${withval}/
+
+else
+
+  echo "with \"ado\"; project t is for Source_Dirs use (); end t;" > t.gpr
+  gnatmake -p -Pt >/dev/null 2>/dev/null
+  if test $? -eq 0; then
+    ADO_DIR=
+  else
+    ADO_DIR=../ado/
+  fi;
+  rm -f t.gpr
+
+fi
+
+echo "with \"${ADO_DIR}ado\"; project t is for Source_Dirs use (); end t;" > t.gpr
+gnatmake -p -Pt >/dev/null 2>/dev/null
+if test $? -ne 0 ; then
+   rm -f t.gpr
+   as_fn_error "Ada Database Objects library not found in ${ADO_DIR}" "$LINENO" 5
+fi
+rm -f t.gpr
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: ${ADO_DIR}" >&5
+$as_echo "${ADO_DIR}" >&6; }
+
+
+for ac_prog in mysql
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_prog_MYSQL+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$MYSQL"; then
+  ac_cv_prog_MYSQL="$MYSQL" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_MYSQL="$ac_prog"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+MYSQL=$ac_cv_prog_MYSQL
+if test -n "$MYSQL"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $MYSQL" >&5
+$as_echo "$MYSQL" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
 fi
 
 
-if test $ENABLE_AUNIT = "yes" ; then
-  PACKAGES="$PACKAGES aunit-gpl-2011-src"
-fi
-
-if test $ENABLE_XMLADA = "yes" ; then
-  PACKAGES="$PACKAGES xmlada-gpl-4.1-src"
-fi
-
-if test $ENABLE_AWS = "yes" ; then
-  PACKAGES="$PACKAGES aws-gpl-2.10.0-src"
-fi
-
-for NAME in $PACKAGES ; do
-   TGZ=$NAME.tar.gz
-   DIR=$NAME
-   case $NAME in
-      xmlada-gpl-4.1-src)
-        DIR=xmlada-4.1-src
-        TARGET=xmlada
-	TGZ=$NAME.tgz
-        ;;
-
-      aunit-*)
-        TARGET=aunit
-	TGZ=$NAME.tgz
-        ;;
-
-      aws-*)
-        TARGET=aws
-	TGZ=$NAME.tgz
-        ;;
-
-      ada-util-*)
-        TARGET=util
-        ;;
-
-      ada-el-*)
-        TARGET=el
-        ;;
-
-      ada-asf-*)
-        TARGET=asf
-        ;;
-
-      ada-ado-*)
-        TARGET=ado
-        ;;
-
-      ada-awa-*)
-        TARGET=awa
-        ;;
-
-      dynamo-*)
-        TARGET=dynamo
-        ;;
-
-      dynamo-*)
-        TARGET=dynamo
-        ;;
-
-      *)
-        TARGET=$NAME
-        ;;
-   esac
-   if test -f distrib/$TGZ ; then
-      TGZ="distrib/$TGZ"
-   else
-      if test -f external/$TARGET/$TGZ ; then
-         TGZ="external/$TARGET/$TGZ"
-      fi
-   fi
-      if test -d $TARGET ; then
-      echo "Package $NAME already extracted."
-   else
-      if test -d $DIR ; then
-         echo "Package $NAME already extracted."
-      else
-         echo "Extracting $TGZ"
-         tar xzf $TGZ
-      fi
-      mv $DIR $TARGET
-   fi
+  test -n "$MYSQL" && break
 done
 
-ARGS="--prefix $prefix"
+if test "X$MYSQL" != "X" ; then
+  ADO_DB_MYSQL=True
+else
+  ADO_DB_MYSQL=False
+fi
 
-DIR=`pwd`
-echo "Configuring ada-util"
-(cd $DIR/util && ./configure $ARGS)
 
-echo "Configuring ada-el"
-(cd $DIR/el && ./configure --with-ada-util=../util $ARGS)
+for ac_prog in sqlite3
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_prog_SQLITE3+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$SQLITE3"; then
+  ac_cv_prog_SQLITE3="$SQLITE3" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_SQLITE3="$ac_prog"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
 
-echo "Configuring ada-asf"
-(cd $DIR/asf && ./configure --with-ada-util=../util --with-ada-el=../el $ARGS)
+fi
+fi
+SQLITE3=$ac_cv_prog_SQLITE3
+if test -n "$SQLITE3"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $SQLITE3" >&5
+$as_echo "$SQLITE3" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
 
-echo "Configuring dynamo"
-(cd $DIR/dynamo && ./configure --with-ada-util=../util --with-ada-el=../el --with-ada-asf=../asf --with-ada-ado=../ado $ARGS)
 
-echo "Configuring ada-ado"
-(cd $DIR/ado && ./configure --with-ada-util=../util $ARGS)
+  test -n "$SQLITE3" && break
+done
 
-echo "Configuring ada-awa"
-(cd $DIR/awa && ./configure --with-ada-util=../util --with-ada-el=../el --with-ada-asf=../asf --with-ada-ado=../ado $ARGS)
+if test "X$SQLITE3" != "X" ; then
+  ADO_DB_SQLITE=True
+else
+  ADO_DB_SQLITE=False
+fi
 
-ac_config_files="$ac_config_files Makefile support/build.config"
+
+ac_config_files="$ac_config_files Makefile awa.gpr tests.gpr"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -3730,7 +3853,8 @@ for ac_config_target in $ac_config_targets
 do
   case $ac_config_target in
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
-    "support/build.config") CONFIG_FILES="$CONFIG_FILES support/build.config" ;;
+    "awa.gpr") CONFIG_FILES="$CONFIG_FILES awa.gpr" ;;
+    "tests.gpr") CONFIG_FILES="$CONFIG_FILES tests.gpr" ;;
 
   *) as_fn_error "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac
