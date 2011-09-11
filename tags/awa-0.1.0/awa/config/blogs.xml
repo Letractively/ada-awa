@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module version="1.0">
+
+  <filter-mapping>
+    <filter-name>service</filter-name>
+    <url-pattern>/blogs/*.html</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>auth-filter</filter-name>
+    <url-pattern>/blogs/*.html</url-pattern>
+  </filter-mapping>
+
+  <entity-permission>
+    <name>blog-create</name>
+    <entity-type>blog</entity-type>
+    <sql>
+       SELECT acl.id FROM acl
+       WHERE acl.entity_type = :entity_type
+       AND acl.user_id = :user_id   
+    </sql>
+  </entity-permission>
+
+  <entity-permission>
+    <name>blog-delete</name>
+    <entity-type>blog</entity-type>
+    <sql>
+       SELECT acl.id FROM acl
+       WHERE acl.entity_type = :entity_type
+       AND acl.user_id = :user_id   
+    </sql>
+  </entity-permission>
+
+  <entity-permission>
+    <name>blog-create-post</name>
+    <entity-type>blog</entity-type>
+    <sql>
+       SELECT acl.id FROM acl
+       WHERE acl.entity_type = :entity_type
+       AND acl.user_id = :user_id
+       AND acl.entity_id = :entity_id
+    </sql>
+  </entity-permission>
+
+  <entity-permission>
+    <name>blog-update-post</name>
+    <entity-type>blog</entity-type>
+    <sql>
+       SELECT acl.id FROM blog_post INNER JOIN acl ON acl.entity_id = blog_post.blog_id
+       WHERE acl.entity_type = :entity_type
+       AND acl.user_id = :user_id
+       AND blog_post.id = :entity_id
+    </sql>
+  </entity-permission>
+
+  <entity-permission>
+    <name>blog-delete-post</name>
+    <entity-type>blog</entity-type>
+    <sql>
+       SELECT acl.id FROM blog_post INNER JOIN acl ON acl.entity_id = blog_post.blog_id
+       WHERE acl.entity_type = :entity_type
+       AND acl.user_id = :user_id
+       AND blog_post.id = :entity_id
+    </sql>
+  </entity-permission>
+
+</module>
