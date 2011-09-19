@@ -1,6 +1,7 @@
 #summary The user module
 
-*Module name* Users \\
+*Module name* Users
+
 *Package* AWA.Users
 
 
@@ -39,42 +40,41 @@ The *users* is stateless and shared by several requests.
 package AWA.Users.Services
 }}}
 
-!!! ASF
 
-!! Login Form
+== Login Form ==
 
 A form to allow users to login.  The form proposes an OpenID login as well as a classical user/password login.
 
-%%code
+{{{
 /auth/login.html
-%%
+}}}
 
 After a login is successful, the user is redirected to an application specific page.
 
-!! Registration Form
+== Registration Form ==
 
 A form to allow a user to register.
 
-%%code
+{{{
 /auth/register.html
-%%
+}}}
 
-!! Logout Action
+== Logout Action ==
 
 The logout action closes the current session and drops any cookie used by the authentication.
 
-%%code
+{{{
 /auth/logout.html
-%%
+}}}
 
-!! Close Account Form
+== Close Account Form ==
 
 To use the close account page, the user should be authenticated.  When closing the account, the user has to confirm
 the close and s/he will be redirected to an application specific page.  The current session will be closed.
 
-%%code
+{{{
 /user/close-account.html
-%%
+}}}
 
 = References =
 
