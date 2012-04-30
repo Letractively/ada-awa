@@ -13,8 +13,7 @@ This page lists and describes the CSS elements used by AWA.
 ||dl.awa-error||Indicates that the form field has an error||
 ||dl.awa-warn||Indicates that the form field has a warning||
 ||ul.awa-buttons||Encloses the form submit buttons||
-
-
+||div.awa-messages||Contains error messages||
 
 
 
