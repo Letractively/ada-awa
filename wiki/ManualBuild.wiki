@@ -14,6 +14,7 @@ Go in the `support` directory
 }}}
 
 Check and modify the configuration by editing the file `build.config`.
+  * If the file does not exist, copy `build.config.in`
   * Check the *PREFIX* variable which indicates where the packages will be installed.
   * Check that the PATH variable is correct
 
@@ -41,4 +42,3 @@ Run the script that extracts, configures, builds and installs.
 {{{
   sh ./build.sh aws-gpl-2.10.0-src
 }}}
-
