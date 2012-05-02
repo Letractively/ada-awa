@@ -8,6 +8,7 @@ platforms:
   * GNAT 2011 on Windows7 (gcc 4.5.3)
   * GNAT 2011 on Ubuntu (gcc 4.5.3)
   * gcc 4.4.3 on Ubuntu
+  * gcc 4.6.2 on Ubuntu
 
 You will need:
 
@@ -30,6 +31,29 @@ On Windows, you can configure with:
   ./configure --prefix=d:/installation/dir
 }}}
 
+If you don't have XML Ada or AWS installed, you can use the package present in the `external` directory.  To enable them, configure with:
+
+{{{
+  ./configure --enable-xmlada --enable-aws
+}}}
+
+= Building external packages =
+
+Before building AWA, you should have installed the XML Ada and the AWS
+packages.  If you have not them, you should build them and install them first.  You can build them by downloading the sources or you can
+use the sources available in the `external` directory.  For this,
+make sure the configure script was executed with the
+`--enable-xmlada --enable-aws` options.  For example:
+
+{{{
+  ./configure --enable-xmlada --enable-aws
+}}}
+
+The XML Ada sources are extracted in the *xmlada* directory and
+the AWS sources are extracted in the *aws* directory.  A utility script
+is provided to help in the build
+
+
 = Build =
 
 For all plateform, you should build with make as follows:
@@ -49,7 +73,7 @@ In that case, you have to build each component individually:
   cd asf && gnatmake -p -Pasf
   cd ado && gnatmake -p -Pado
   cd awa && gnatmake -p -Pawa
-  cd dynamo && gnatmake -p -Pdynamo
+  cd dynamo && gprbuild -p -Pdynamo
 }}}
 
 = Installation =
