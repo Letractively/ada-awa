@@ -1,0 +1,9 @@
+#summary Manual build of AWA packages
+
+This page tries to explain how to build various packages
+used by AWA manually.
+
+= Building XML Ada =
+
+
+= Building AWS =
