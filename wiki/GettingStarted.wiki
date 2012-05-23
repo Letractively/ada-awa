@@ -1,5 +1,8 @@
 #summary Getting Started with AWA
 
+This short tutorial will help you create a first application and
+get started easily with the AWA framework.  It assumes that you
+have built and installed the complete AWA framework.
 
 = Creating a project =
 
@@ -7,9 +10,11 @@ First, you will use the `dynamo` command to create your new project.
 You must choose a project name.  This must be a valid Ada identifier
 as it will be used for the application root package name.
 The project files are created in the current directory.
+You also indicate the license you want to use (*apache*, *gpl* or *proprietary*), your name and email address.  These parameters will
+appear in the source headers.
 
 {{{
-dynamo create-project atlas
+dynamo create-project atlas -l apache Your-Name Your-Email
 }}}
 
 Once the project is created, it is ready to be configured, built and
@@ -17,10 +22,14 @@ executed.  The new project has the following structure:
 
 ||bin||Directory which will contain the application server||
 ||src||The application sources (Ada)||
+||db||The application database models (XML and SQL files)||
 ||web||The presentation pages (HTML, XHTML, Javascript, ...)||
 ||web/css||The CSS presentation pages ||
 ||web/images||The application images||
+||web/js||The application javascript files||
 ||bundles||The resource bundles for application localization||
+||config||The application configuration files||
+
 
 = Configuring the project =
 
@@ -29,6 +38,34 @@ Your new project must be configured:
 {{{
 ./configure
 }}}
+
+= Database Schema Generation =
+
+The AWA framework uses either a MySQL or an SQLite database.
+The application model files are defined according to the
+[http://code.google.com/p/ada-ado ADO] model: they are represented as
+XML hibernate files.  From these XML files, the Ada model files as well
+as the SQL files are created.  It is necessary to run the
+`dynamo generate` command to build these files.
+
+{{{
+dynamo generate db
+}}}
+
+While doing so, the `dynamo` command looks at the application modules
+and plugins which are used.  It generates SQL files that take into account
+the data model defined by these modules and plugins.
+
+= Database Creation =
+
+You can create you MySQL database manually but it may be easier to
+use again the `dynamo` command to generate the database, create the user,
+and populate the database with tables.
+
+{{{
+dynamo create-database db 'mysql://localhost:3306/atlas_demo?user=atlas&password=atlas' root
+}}}
+
 
 = Building the project =
 
