@@ -119,4 +119,6 @@ expose a new web page `main.html`.  You can create new pages as well as modify t
 
 == Video ==
 
+The short video below shows the above steps.
+
 <wiki:video url="http://www.youtube.com/watch?v=2VOZ4_p7h2o"/>
