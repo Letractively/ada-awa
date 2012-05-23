@@ -117,7 +117,7 @@ dynamo add-page main
 The file `web/main.xhtml` is created and your application server will now
 expose a new web page `main.html`.  You can create new pages as well as modify them while your server is running.
 
-== Video ==
+= Video =
 
 The short video below shows the above steps.
 
