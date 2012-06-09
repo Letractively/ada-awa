@@ -32,4 +32,40 @@ With this definition, the mail template `/mail/register-user-message.xhtml`
 is formatted by using the event and application context when the
 `user-register` event is posted.
 
+== Components ==
+The <b>AWA.Mail.Components</b> package defines several UI components that represent
+a mail message in an ASF view.  The components allow the creation, formatting and
+sending of a mail message using the same mechanism as the application presentation layer.
+Example:
+
+<f:view xmlns="mail:http://code.google.com/p/ada-awa/mail">
+{{{
+   <mail:message>
+      <mail:subject>Welcome</mail:subject>
+      <mail:to name="Iorek Byrnison">Iorek.Byrnison@svalbard.com</mail:to>
+      <mail:body>
+          ...
+      </mail:body>
+   </mail:message>
+</f:view>
+}}}
+
+When the view which contains these components is rendered, a mail message is built
+and initialized by rendering the inner components.  The body and other components can use
+other application UI components to render useful content.  The email is send after
+the <b>mail:message</b> has finished to render its inner children.
+=== Mail Recipients ===
+The <b>AWA.Mail.Components.Recipients</b> package defines the UI components
+to represent the <tt>To</tt>, <tt>From</tt>, <tt>Cc</tt> and <tt>Bcc</tt> recipients.
+
+The mail message is retrieved by looking at the parent UI component until a
+<tt>UIMailMessage</b> component is found.  The mail message recipients are initialized
+during the render response JSF phase, that is when <tt>Encode_End</tt> are called.
+=== Mail Messages ===
+The <b>AWA.Mail.Components.Messages</b> package defines the UI components
+to represent the email message with its recipients, subject and body.
+
+The mail message is retrieved by looking at the parent UI component until a
+<tt>UIMailMessage</b> component is found.  The mail message recipients are initialized
+during the render response JSF phase, that is when <tt>Encode_End</tt> are called.
 
