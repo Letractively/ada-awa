@@ -5,8 +5,8 @@ The *blogs* plugin is a small blog application which allows users to publish art
 
 <h3>Ada Beans</h3><table width="100%">
 <tr>
-<th width="30%">Name</th>
-<th width="70%">Description</th>
+<th width="30%" align="left">Name</th>
+<th width="70%" align="left">Description</th>
 </tr>
 <tr>
 <td>post</td>
@@ -34,9 +34,9 @@ The *blogs* plugin is a small blog application which allows users to publish art
 </tr>
 </table><h3>Permissions</h3><table width="100%">
 <tr>
-<th width="20%">Name</th>
-<th width="10%">Name</th>
-<th width="70%">Description</th>
+<th width="20%" align="left">Name</th>
+<th width="10%" align="left">Name</th>
+<th width="70%" align="left">Description</th>
 </tr>
 <tr>
 <td>blog-create</td>
@@ -65,7 +65,17 @@ The *blogs* plugin is a small blog application which allows users to publish art
 </tr>
 </table>
 
+
+== Model ==
+[http://ada-awa.googlecode.com/svn/wiki/awa_blogs_model.png]
+
 <h3>Database Model</h3><h4>AWA.Blogs.Models.Blog</h4><p>Blog </p><table width="100%">
+<tr>
+<th width="15%" align="left">Type</th>
+<th width="15%" align="left">Ada</th>
+<th width="20%" align="left">Name</th>
+<th width="50%" align="left">Description</th>
+</tr>
 <tr>
 <td>INTEGER</td>
 <td>ADO.Identifier</td>
@@ -105,6 +115,12 @@ The *blogs* plugin is a small blog application which allows users to publish art
 </table>
 
 <h4>AWA.Blogs.Models.Post</h4><p>Post in a blog</p><table width="100%">
+<tr>
+<th width="15%" align="left">Type</th>
+<th width="15%" align="left">Ada</th>
+<th width="20%" align="left">Name</th>
+<th width="50%" align="left">Description</th>
+</tr>
 <tr>
 <td>BIGINT</td>
 <td>ADO.Identifier</td>
