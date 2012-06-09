@@ -1,0 +1,269 @@
+#summary User management module
+
+== Introduction ==
+The <b>Users.Module</b> manages the creation, update, removal and authentication of users
+in an application.  The module provides the foundations for user management in
+a web application.
+
+A user can register himself by using a subscription form.  In that case, a verification mail
+is sent and the user has to follow the verification link defined in the mail to finish
+the registration process.  The user will authenticate using a password.
+
+A user can also use an OpenID account and be automatically registered.
+
+A user can have one or several permissions that allow to protect the application data.
+User permissions are managed by the <b>Permissions.Module</b>.
+
+== Configuration ==
+The *users* module uses a set of configuration properties to configure the OpenID
+integration.
+
+== Introduction ==
+The *users* module provides a *users* service which controls the users data model.
+
+== Events ==
+The *users* module exposes a number of events which are posted when some action
+are performed at the service level.
+
+{{{
+  user-register
+    This event is posted when a new user is registered in the application.
+    It can be used to send a registration email.
+  user-create
+    This event is posted when a new user is created.  It can be used to trigger
+    the pre-initialization of the application for the new user.
+  user-lost-password
+    This event is posted when a user asks for a password reset through an
+    anonymous form.  It is intended to be used to send the reset password email.
+  user-reset-password
+    This event is posted when a user has successfully reset his password.
+    It can be used to send an email.
+}}}
+
+<h3>Ada Beans</h3><table width="100%">
+<tr>
+<th width="30%" align="left">Name</th>
+<th width="70%" align="left">Description</th>
+</tr>
+<tr>
+<td>login</td>
+<td>This bean is used by the login form</td>
+</tr>
+<tr>
+<td>register</td>
+<td>This bean is used by the registration form</td>
+</tr>
+<tr>
+<td>resetPassword</td>
+<td>This bean is used by the reset password form</td>
+</tr>
+<tr>
+<td>lostPassword</td>
+<td>This bean is used by the lost password form</td>
+</tr>
+<tr>
+<td>logout</td>
+<td>This bean is used by the logout process</td>
+</tr>
+<tr>
+<td>user</td>
+<td>This bean allows to provide information about the current logged user.</td>
+</tr>
+</table>
+
+
+== Data Model ==
+<h4>AWA.Users.Models.Email</h4><p>Email address</p><table width="100%">
+<tr>
+<th width="15%" align="left">Type</th>
+<th width="15%" align="left">Ada</th>
+<th width="20%" align="left">Name</th>
+<th width="50%" align="left">Description</th>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>ADO.Identifier</td>
+<td>id</td>
+<td>the email id</td>
+</tr>
+<tr>
+<td>int</td>
+<td></td>
+<td>version</td>
+<td>the email version.</td>
+</tr>
+<tr>
+<td>VARCHAR(256)</td>
+<td>String</td>
+<td>email</td>
+<td>the email address</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>ADO.Identifier</td>
+<td>user_id</td>
+<td>the user identifier</td>
+</tr>
+</table>
+
+<h4>AWA.Users.Models.User</h4><p>Record representing a user</p><table width="100%">
+<tr>
+<th width="15%" align="left">Type</th>
+<th width="15%" align="left">Ada</th>
+<th width="20%" align="left">Name</th>
+<th width="50%" align="left">Description</th>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>ADO.Identifier</td>
+<td>id</td>
+<td>the user id</td>
+</tr>
+<tr>
+<td>int</td>
+<td></td>
+<td>version</td>
+<td>the user version.</td>
+</tr>
+<tr>
+<td>VARCHAR(256)</td>
+<td>String</td>
+<td>openid</td>
+<td>the open id</td>
+</tr>
+<tr>
+<td>VARCHAR(256)</td>
+<td>String</td>
+<td>name</td>
+<td>the user name</td>
+</tr>
+<tr>
+<td>VARCHAR(256)</td>
+<td>String</td>
+<td>first_name</td>
+<td>the user first name</td>
+</tr>
+<tr>
+<td>VARCHAR(256)</td>
+<td>String</td>
+<td>last_name</td>
+<td>the user last name</td>
+</tr>
+<tr>
+<td>VARCHAR(256)</td>
+<td>String</td>
+<td>password</td>
+<td>the user last name</td>
+</tr>
+<tr>
+<td>VARCHAR(256)</td>
+<td>String</td>
+<td>country</td>
+<td>the user country</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>Email</td>
+<td>email_id</td>
+<td>the user email address</td>
+</tr>
+</table>
+
+<h4>AWA.Users.Models.Access_Key</h4><p>Defines an access key</p><table width="100%">
+<tr>
+<th width="15%" align="left">Type</th>
+<th width="15%" align="left">Ada</th>
+<th width="20%" align="left">Name</th>
+<th width="50%" align="left">Description</th>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>ADO.Identifier</td>
+<td>id</td>
+<td>the email id</td>
+</tr>
+<tr>
+<td>int</td>
+<td></td>
+<td>version</td>
+<td>the access key version.</td>
+</tr>
+<tr>
+<td>VARCHAR(256)</td>
+<td>String</td>
+<td>access_key</td>
+<td>the access key</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>ADO.Identifier</td>
+<td>user_id</td>
+<td>the user identifier</td>
+</tr>
+</table>
+
+<h4>AWA.Users.Models.Session</h4><p>Defines an user session</p><table width="100%">
+<tr>
+<th width="15%" align="left">Type</th>
+<th width="15%" align="left">Ada</th>
+<th width="20%" align="left">Name</th>
+<th width="50%" align="left">Description</th>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>ADO.Identifier</td>
+<td>id</td>
+<td>the user session id</td>
+</tr>
+<tr>
+<td>int</td>
+<td></td>
+<td>version</td>
+<td>the user session version.</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td></td>
+<td>start_date</td>
+<td>the session start date</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td></td>
+<td>end_date</td>
+<td>the session start date</td>
+</tr>
+<tr>
+<td>VARCHAR(255)</td>
+<td>String</td>
+<td>ip_address</td>
+<td>the IP address</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>ADO.Identifier</td>
+<td>user_id</td>
+<td>the user identifier</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>Integer</td>
+<td>type</td>
+<td>the session type</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>Integer</td>
+<td>server_id</td>
+<td>the server instance identifier that created this session</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>Session</td>
+<td>auth_id</td>
+<td>the authentication session identifier</td>
+</tr>
+</table>
+
+
+

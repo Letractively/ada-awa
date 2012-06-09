@@ -1,0 +1,135 @@
+#summary Storage module
+
+==  Introduction  ==
+The <b>Storages</b> module provides a set of storage services allowing an application
+to store data files, documents, images in a persistent area.
+
+== Data Model ==
+<h4>AWA.Storages.Models.Storage_Data</h4><p>The database storage data when the storage type is DATABASE.</p><table width="100%">
+<tr>
+<th width="15%" align="left">Type</th>
+<th width="15%" align="left">Ada</th>
+<th width="20%" align="left">Name</th>
+<th width="50%" align="left">Description</th>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>ADO.Identifier</td>
+<td>id</td>
+<td>the storage data identifier</td>
+</tr>
+<tr>
+<td>int</td>
+<td></td>
+<td>version</td>
+<td>the storage data version.</td>
+</tr>
+<tr>
+<td>BLOB</td>
+<td>blob</td>
+<td>data</td>
+<td>the storage data when the storage type is DATABASE.</td>
+</tr>
+</table>
+
+<h4>AWA.Storages.Models.Storage</h4><p>The database storage data when the storage type is DATABASE.</p><table width="100%">
+<tr>
+<th width="15%" align="left">Type</th>
+<th width="15%" align="left">Ada</th>
+<th width="20%" align="left">Name</th>
+<th width="50%" align="left">Description</th>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>ADO.Identifier</td>
+<td>id</td>
+<td>the storage identifier</td>
+</tr>
+<tr>
+<td>int</td>
+<td></td>
+<td>version</td>
+<td>the storage data version.</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>Time</td>
+<td>create_date</td>
+<td>the local store creation date</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>AWA.Storages.Models.Storage_Type</td>
+<td>storage_type</td>
+<td>the storage type.</td>
+</tr>
+<tr>
+<td>VARCHAR(256)</td>
+<td>String</td>
+<td>data</td>
+<td>the storage specific data</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>Storage_Data</td>
+<td>storage_id</td>
+<td>the storage that this local store refers to.</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>AWA.Workspaces.Models.Workspace</td>
+<td>workspace_id</td>
+<td>the workspace that this storage belongs to.</td>
+</tr>
+</table>
+
+<h4>AWA.Storages.Models.Store_Local</h4><p>The local store record is created when a copy of the data
+is needed on the local file system.  The creation date refers to the date when
+the data was copied on the local file system.  The expiration date indicates a
+date after which the local file can be removed from the local file system.</p><table width="100%">
+<tr>
+<th width="15%" align="left">Type</th>
+<th width="15%" align="left">Ada</th>
+<th width="20%" align="left">Name</th>
+<th width="50%" align="left">Description</th>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>ADO.Identifier</td>
+<td>id</td>
+<td>the local storage identifier</td>
+</tr>
+<tr>
+<td>int</td>
+<td></td>
+<td>version</td>
+<td>the local storage version.</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>Time</td>
+<td>create_date</td>
+<td>the local store creation date</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>Time</td>
+<td>expire_date</td>
+<td>the local store expiration date</td>
+</tr>
+<tr>
+<td>VARCHAR(256)</td>
+<td>String</td>
+<td>name</td>
+<td>the local store path</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>Storage</td>
+<td>storage_id</td>
+<td>the storage that this local store refers to.</td>
+</tr>
+</table>
+
+
+
