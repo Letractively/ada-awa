@@ -4,6 +4,26 @@
 The <b>Storages</b> module provides a set of storage services allowing an application
 to store data files, documents, images in a persistent area.
 
+== Ada Beans ==
+<h3>Permissions</h3><table width="100%">
+<tr>
+<th width="20%" align="left">Name</th>
+<th width="10%" align="left">Name</th>
+<th width="70%" align="left">Description</th>
+</tr>
+<tr>
+<td>storage-create</td>
+<td>workspace</td>
+<td></td>
+</tr>
+<tr>
+<td>storage-delete</td>
+<td>awa_storage</td>
+<td></td>
+</tr>
+</table>
+
+
 == Data Model ==
 <h4>AWA.Storages.Models.Storage_Data</h4><p>The database storage data when the storage type is DATABASE.</p><table width="100%">
 <tr>

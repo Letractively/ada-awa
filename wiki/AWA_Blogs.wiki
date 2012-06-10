@@ -3,7 +3,8 @@
 == Introduction ==
 The *blogs* plugin is a small blog application which allows users to publish articles.
 
-<h3>Ada Beans</h3><table width="100%">
+== Ada Beans ==
+<table width="100%">
 <tr>
 <th width="30%" align="left">Name</th>
 <th width="70%" align="left">Description</th>
@@ -64,6 +65,143 @@ The *blogs* plugin is a small blog application which allows users to publish art
 <td>Permission to delete a post.</td>
 </tr>
 </table>
+
+
+== Queries ==
+<h4>AWA.Blogs.Models.Admin_Post_Info</h4><p>The Admin_Post_Info describes a post in the administration interface.</p><table width="100%">
+<tr>
+<th width="15%" align="left">Type</th>
+<th width="15%" align="left">Ada</th>
+<th width="20%" align="left">Name</th>
+<th width="50%" align="left">Description</th>
+</tr>
+<tr>
+<td></td>
+<td>Identifier</td>
+<td></td>
+<td>the post identifier.</td>
+</tr>
+<tr>
+<td></td>
+<td>String</td>
+<td></td>
+<td>the post title.</td>
+</tr>
+<tr>
+<td></td>
+<td>String</td>
+<td></td>
+<td>the post uri.</td>
+</tr>
+<tr>
+<td></td>
+<td>Date</td>
+<td></td>
+<td>the post publish date.</td>
+</tr>
+<tr>
+<td></td>
+<td>AWA.Blogs.Models.Post_Status_Type</td>
+<td></td>
+<td>the post status.</td>
+</tr>
+<tr>
+<td></td>
+<td>String</td>
+<td></td>
+<td>the user name.</td>
+</tr>
+</table>
+
+
+
+<h4>AWA.Blogs.Models.Post_Info</h4><p>The Post_Info describes a post to be displayed in the blog page</p><table width="100%">
+<tr>
+<th width="15%" align="left">Type</th>
+<th width="15%" align="left">Ada</th>
+<th width="20%" align="left">Name</th>
+<th width="50%" align="left">Description</th>
+</tr>
+<tr>
+<td></td>
+<td>Identifier</td>
+<td></td>
+<td>the post identifier.</td>
+</tr>
+<tr>
+<td></td>
+<td>String</td>
+<td></td>
+<td>the post title.</td>
+</tr>
+<tr>
+<td></td>
+<td>String</td>
+<td></td>
+<td>the post uri.</td>
+</tr>
+<tr>
+<td></td>
+<td>Date</td>
+<td></td>
+<td>the post publish date.</td>
+</tr>
+<tr>
+<td></td>
+<td>String</td>
+<td></td>
+<td>the user name.</td>
+</tr>
+<tr>
+<td></td>
+<td>String</td>
+<td></td>
+<td>the post text.</td>
+</tr>
+</table>
+
+
+
+<h4>AWA.Blogs.Models.Blog_Info</h4><p>The list of blogs.</p><table width="100%">
+<tr>
+<th width="15%" align="left">Type</th>
+<th width="15%" align="left">Ada</th>
+<th width="20%" align="left">Name</th>
+<th width="50%" align="left">Description</th>
+</tr>
+<tr>
+<td></td>
+<td>Identifier</td>
+<td></td>
+<td>the blog identifier.</td>
+</tr>
+<tr>
+<td></td>
+<td>String</td>
+<td></td>
+<td>the blog title.</td>
+</tr>
+<tr>
+<td></td>
+<td>String</td>
+<td></td>
+<td>the blog uuid.</td>
+</tr>
+<tr>
+<td></td>
+<td>Date</td>
+<td></td>
+<td>the blog creation date.</td>
+</tr>
+<tr>
+<td></td>
+<td>Integer</td>
+<td></td>
+<td>the number of posts published.</td>
+</tr>
+</table>
+
+
 
 
 == Model ==

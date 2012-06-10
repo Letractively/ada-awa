@@ -69,3 +69,16 @@ The mail message is retrieved by looking at the parent UI component until a
 <tt>UIMailMessage</b> component is found.  The mail message recipients are initialized
 during the render response JSF phase, that is when <tt>Encode_End</tt> are called.
 
+== Ada Beans ==
+<table width="100%">
+<tr>
+<th width="30%" align="left">Name</th>
+<th width="70%" align="left">Description</th>
+</tr>
+<tr>
+<td>userMail</td>
+<td>Bean used to send an email with a specific template to the user.</td>
+</tr>
+</table>
+
+

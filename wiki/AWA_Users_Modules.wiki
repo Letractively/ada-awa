@@ -40,7 +40,7 @@ are performed at the service level.
     It can be used to send an email.
 }}}
 
-<h3>Ada Beans</h3><table width="100%">
+<table width="100%">
 <tr>
 <th width="30%" align="left">Name</th>
 <th width="70%" align="left">Description</th>

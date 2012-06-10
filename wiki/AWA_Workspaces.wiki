@@ -1,9 +1,33 @@
 #summary Module workspaces
 
-==  Introduction ==
+== Introduction ==
 The *workspaces* plugin defines a workspace area for other plugins.
 
-==  Data Model ==
+== Ada Beans ==
+<table width="100%">
+<tr>
+<th width="30%" align="left">Name</th>
+<th width="70%" align="left">Description</th>
+</tr>
+<tr>
+<td>workspace</td>
+<td>This bean allows to perform some general workspace actions</td>
+</tr>
+</table><h3>Permissions</h3><table width="100%">
+<tr>
+<th width="20%" align="left">Name</th>
+<th width="10%" align="left">Name</th>
+<th width="70%" align="left">Description</th>
+</tr>
+<tr>
+<td>workspaces-create</td>
+<td>workspace</td>
+<td></td>
+</tr>
+</table>
+
+
+== Data Model ==
 <h4>AWA.Workspaces.Models.Workspace</h4><p>
 The workspace allows to group all together the different
 application entities which belong to a user or a set of collaborating users.
