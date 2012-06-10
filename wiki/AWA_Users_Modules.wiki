@@ -18,6 +18,74 @@ User permissions are managed by the <b>Permissions.Module</b>.
 The *users* module uses a set of configuration properties to configure the OpenID
 integration.
 
+<table width="100%">
+<tr>
+<th width="30%" align="left">Name</th>
+<th width="70%" align="left">Description</th>
+</tr>
+<tr>
+<td>login</td>
+<td>This bean is used by the login form</td>
+</tr>
+<tr>
+<td>register</td>
+<td>This bean is used by the registration form</td>
+</tr>
+<tr>
+<td>resetPassword</td>
+<td>This bean is used by the reset password form</td>
+</tr>
+<tr>
+<td>lostPassword</td>
+<td>This bean is used by the lost password form</td>
+</tr>
+<tr>
+<td>logout</td>
+<td>This bean is used by the logout process</td>
+</tr>
+<tr>
+<td>user</td>
+<td>This bean allows to provide information about the current logged user.</td>
+</tr>
+</table><h3>Configuration</h3><table width="100%">
+<tr>
+<th width="30%" align="left">Name</th>
+<th width="70%" align="left">Description</th>
+</tr>
+<tr>
+<td>openid.realm</td>
+<td>
+The REALM URL used by OpenID providers to verify the validity of the verification callback.
+</td>
+</tr>
+<tr>
+<td></td>
+<td><tt>http://localhost:8080#{contextPath}/auth</tt></td>
+</tr>
+<tr>
+<td>openid.callback_url</td>
+<td>
+The verification callback URI used by the OpenID provider to redirect the user
+after authentication.
+</td>
+</tr>
+<tr>
+<td></td>
+<td><tt>http://localhost:8080#{contextPath}/auth/verify</tt></td>
+</tr>
+<tr>
+<td>openid.success_url</td>
+<td>
+The URI where the user is redirected after a successful authentication.
+</td>
+</tr>
+<tr>
+<td></td>
+<td><tt>#{contextPath}/workspaces/main.html</tt></td>
+</tr>
+</table>
+
+
 == Introduction ==
 The *users* module provides a *users* service which controls the user data model.
 
@@ -33,7 +101,7 @@ It can be used to send a registration email.
 This event is posted when a new user is created.  It can be used to trigger
 the pre-initialization of the application for the new user.
 
-=== user-lost-password
+=== user-lost-password ===
 This event is posted when a user asks for a password reset through an
 anonymous form.  It is intended to be used to send the reset password email.
 
@@ -70,6 +138,42 @@ It can be used to send an email.
 <tr>
 <td>user</td>
 <td>This bean allows to provide information about the current logged user.</td>
+</tr>
+</table><h3>Configuration</h3><table width="100%">
+<tr>
+<th width="30%" align="left">Name</th>
+<th width="70%" align="left">Description</th>
+</tr>
+<tr>
+<td>openid.realm</td>
+<td>
+The REALM URL used by OpenID providers to verify the validity of the verification callback.
+</td>
+</tr>
+<tr>
+<td></td>
+<td><tt>http://localhost:8080#{contextPath}/auth</tt></td>
+</tr>
+<tr>
+<td>openid.callback_url</td>
+<td>
+The verification callback URI used by the OpenID provider to redirect the user
+after authentication.
+</td>
+</tr>
+<tr>
+<td></td>
+<td><tt>http://localhost:8080#{contextPath}/auth/verify</tt></td>
+</tr>
+<tr>
+<td>openid.success_url</td>
+<td>
+The URI where the user is redirected after a successful authentication.
+</td>
+</tr>
+<tr>
+<td></td>
+<td><tt>#{contextPath}/workspaces/main.html</tt></td>
 </tr>
 </table>
 

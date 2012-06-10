@@ -79,6 +79,21 @@ during the render response JSF phase, that is when <tt>Encode_End</tt> are calle
 <td>userMail</td>
 <td>Bean used to send an email with a specific template to the user.</td>
 </tr>
+</table><h3>Configuration</h3><table width="100%">
+<tr>
+<th width="30%" align="left">Name</th>
+<th width="70%" align="left">Description</th>
+</tr>
+<tr>
+<td>openid.realm</td>
+<td>
+The REALM URL used by OpenID providers to verify the validity of the verification callback.
+</td>
+</tr>
+<tr>
+<td></td>
+<td><tt>http://localhost:8080#{contextPath}/auth</tt></td>
+</tr>
 </table>
 
 
