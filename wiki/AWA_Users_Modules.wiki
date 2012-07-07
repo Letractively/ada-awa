@@ -178,7 +178,9 @@ The URI where the user is redirected after a successful authentication.
 </table>
 
 
-== Data Model ==
+== Model ==
+[http://ada-awa.googlecode.com/svn/wiki/awa_user_model.png]
+
 <h4>AWA.Users.Models.Email</h4><p>Email address</p><table width="100%">
 <tr>
 <th width="15%" align="left">Type</th>
