@@ -191,6 +191,18 @@ When the event is queued, there are two types of event queues:
 </tr>
 <tr>
 <td>INTEGER</td>
+<td>ADO.Entity_Type</td>
+<td>entity_type</td>
+<td>an optional entity type associated with the `entity_id`</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>ADO.Identifier</td>
+<td>entity_id</td>
+<td>an optional entity identifier to link the event to another database entity</td>
+</tr>
+<tr>
+<td>INTEGER</td>
 <td>Message_Type</td>
 <td>type</td>
 <td>the message type</td>
