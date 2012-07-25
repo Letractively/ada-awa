@@ -112,6 +112,45 @@ the local path is obtained by using the `Get_Path` operation:
 </tr>
 </table>
 
+<h4>AWA.Storages.Models.Storage_Folder</h4><p>Storage files are organized in folders.</p><table width="100%">
+<tr>
+<th width="15%" align="left">Type</th>
+<th width="15%" align="left">Ada</th>
+<th width="20%" align="left">Name</th>
+<th width="50%" align="left">Description</th>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>ADO.Identifier</td>
+<td>id</td>
+<td>the storage folder identifier</td>
+</tr>
+<tr>
+<td>int</td>
+<td></td>
+<td>version</td>
+<td>the storage folder version.</td>
+</tr>
+<tr>
+<td>VARCHAR(256)</td>
+<td>String</td>
+<td>name</td>
+<td>the storage folder name</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>Time</td>
+<td>create_date</td>
+<td>the folder creation date</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>AWA.Workspaces.Models.Workspace</td>
+<td>workspace_id</td>
+<td>the workspace that this storage folder belongs to.</td>
+</tr>
+</table>
+
 <h4>AWA.Storages.Models.Storage</h4><p>The database storage data when the storage type is DATABASE.</p><table width="100%">
 <tr>
 <th width="15%" align="left">Type</th>
@@ -146,8 +185,26 @@ the local path is obtained by using the `Get_Path` operation:
 <tr>
 <td>VARCHAR(256)</td>
 <td>String</td>
-<td>data</td>
-<td>the storage specific data</td>
+<td>uri</td>
+<td>the storage specific URI</td>
+</tr>
+<tr>
+<td>VARCHAR(256)</td>
+<td>String</td>
+<td>name</td>
+<td>the storage name or filename</td>
+</tr>
+<tr>
+<td>VARCHAR(256)</td>
+<td>String</td>
+<td>mime_type</td>
+<td>the content mime type</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>Integer</td>
+<td>file_size</td>
+<td>the content size</td>
 </tr>
 <tr>
 <td>INTEGER</td>
@@ -160,6 +217,12 @@ the local path is obtained by using the `Get_Path` operation:
 <td>AWA.Workspaces.Models.Workspace</td>
 <td>workspace_id</td>
 <td>the workspace that this storage belongs to.</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>Storage_Folder</td>
+<td>folder_id</td>
+<td>the storage folder that this storage belongs to.</td>
 </tr>
 </table>
 
@@ -200,8 +263,20 @@ date after which the local file can be removed from the local file system.</p><t
 <tr>
 <td>VARCHAR(256)</td>
 <td>String</td>
-<td>name</td>
+<td>path</td>
 <td>the local store path</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>Integer</td>
+<td>store_version</td>
+<td>the storage version that this local store represents</td>
+</tr>
+<tr>
+<td>TINYINT</td>
+<td>Boolean</td>
+<td>shared</td>
+<td>whether the local store file can be shared or not</td>
 </tr>
 <tr>
 <td>INTEGER</td>
