@@ -116,13 +116,13 @@ manages the job dispatchers.
 <td>the job status</td>
 </tr>
 <tr>
-<td>VARCHAR(60000)</td>
+<td>TEXT</td>
 <td>String</td>
 <td>messages</td>
 <td>the job messages</td>
 </tr>
 <tr>
-<td>VARCHAR(60000)</td>
+<td>TEXT</td>
 <td>String</td>
 <td>results</td>
 <td>the job results</td>
