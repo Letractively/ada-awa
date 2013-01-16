@@ -9,7 +9,7 @@ to vote for an item.  The managed bean can be easily configured in the applicati
 configuration file.  The <b>permission</b> and <b>entity_type</b> are the two properties
 that should be defined in the configuration.  The <b>permission</b> is the name of the
 permission that must be used to verify that the user is allowed to vote for the item.
-The <b>entity_type<b> is the name of the entity (table name) used by the item.
+The <b>entity_type</b> is the name of the entity (table name) used by the item.
 The example below defines the bean <tt>questionVote</tt> defined by the question module.
 
 {{{
@@ -34,7 +34,7 @@ The example below defines the bean <tt>questionVote</tt> defined by the question
 The vote concerns entities for the <tt>awa_question</tt> entity table.
 The permission <tt>answer-create</tt> is used to verify for the vote.
 
-[http://ada-awa.googlecode.com/svn/wiki/awa_votes_model.png]
+[http://ada-awa.googlecode.com/svn/wiki/awa_votes_bean.png]
 
 
 ----
