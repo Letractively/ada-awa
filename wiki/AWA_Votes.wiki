@@ -11,8 +11,9 @@ any database entity and it is not necessary to change other entities in your dat
 [http://ada-awa.googlecode.com/svn/wiki/awa_votes_model.png]
 
 == Integration ==
-To add the <b>Votes</b> module in an application, the <tt>Vote_Module</tt> instance must
-be declared and registered in the AWA application.
+The <tt>Vote_Module</tt> manages the votes on entities.  It provides operations that are
+used by the vote beans or other services to vote for an item.  An instance of the
+the <tt>Vote_Module</tt> must be declared and registered in the AWA application.
 
 === Vote Beans ===
 The <tt>Vote_Bean</tt> is a bean intended to be used in presentation files (XHTML facelet
