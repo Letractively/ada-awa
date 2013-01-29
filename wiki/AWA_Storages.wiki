@@ -34,9 +34,9 @@ identifier that can be retrieved by `Get_Id` or `Get_Key`.
 Several operations are defined to retrieve the data.  Each of them has been designed
 to optimize the retrieval and
 
-  * The data can be retrieved in a local file.    This mode is useful if an external program must be launched and be able to read    the file.  If the storage mode of the data is `FILE`, the path of the file on    the storage file system is used.  For other storage modes, the file is saved    in a temporary file.  In that case the `Store_Local` database table is used    to track such locally saved data.
+  * The data can be retrieved in a local file. This mode is useful if an external program must be launched and be able to read the file.  If the storage mode of the data is `FILE`, the path of the file on the storage file system is used.  For other storage modes, the file is saved in a temporary file.  In that case the `Store_Local` database table is used to track such locally saved data.
 
-  * The data can be returned as a stream.    When the application has to read the data, opening a read stream connection is    the most efficient mechanism.
+  * The data can be returned as a stream. When the application has to read the data, opening a read stream connection is the most efficient mechanism.
 
 === Local file ===
 To access the data by using a local file, we must define a local storage reference:
@@ -92,17 +92,17 @@ the local path is obtained by using the `Get_Path` operation:
 </tr>
 <tr>
 <td>folder-create</td>
-<td>workspace</td>
+<td>awa_workspace</td>
 <td></td>
 </tr>
 <tr>
 <td>storage-create</td>
-<td>workspace</td>
+<td>awa_workspace</td>
 <td></td>
 </tr>
 <tr>
 <td>storage-delete</td>
-<td>awa_storage</td>
+<td>awa_workspace</td>
 <td></td>
 </tr>
 </table><h3>Configuration</h3><table width="100%">
@@ -123,221 +123,6 @@ the local path is obtained by using the `Get_Path` operation:
 
 == Model ==
 [http://ada-awa.googlecode.com/svn/wiki/awa_storage_model.png]
-
-<h4>AWA.Storages.Models.Storage_Data</h4><p>The database storage data when the storage type is DATABASE.</p><table width="100%">
-<tr>
-<th width="15%" align="left">Type</th>
-<th width="15%" align="left">Ada</th>
-<th width="20%" align="left">Name</th>
-<th width="50%" align="left">Description</th>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>ADO.Identifier</td>
-<td>id</td>
-<td>the storage data identifier</td>
-</tr>
-<tr>
-<td>int</td>
-<td></td>
-<td>version</td>
-<td>the storage data version.</td>
-</tr>
-<tr>
-<td>BLOB</td>
-<td>blob</td>
-<td>data</td>
-<td>the storage data when the storage type is DATABASE.</td>
-</tr>
-</table>
-
-<h4>AWA.Storages.Models.Storage_Folder</h4><p>Storage files are organized in folders.</p><table width="100%">
-<tr>
-<th width="15%" align="left">Type</th>
-<th width="15%" align="left">Ada</th>
-<th width="20%" align="left">Name</th>
-<th width="50%" align="left">Description</th>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>ADO.Identifier</td>
-<td>id</td>
-<td>the storage folder identifier</td>
-</tr>
-<tr>
-<td>int</td>
-<td></td>
-<td>version</td>
-<td>the storage folder version.</td>
-</tr>
-<tr>
-<td>VARCHAR(256)</td>
-<td>String</td>
-<td>name</td>
-<td>the storage folder name</td>
-</tr>
-<tr>
-<td>DATETIME</td>
-<td>Time</td>
-<td>create_date</td>
-<td>the folder creation date</td>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>AWA.Workspaces.Models.Workspace</td>
-<td>workspace_id</td>
-<td>the workspace that this storage folder belongs to.</td>
-</tr>
-</table>
-
-<h4>AWA.Storages.Models.Storage</h4><p>The database storage data when the storage type is DATABASE.</p><table width="100%">
-<tr>
-<th width="15%" align="left">Type</th>
-<th width="15%" align="left">Ada</th>
-<th width="20%" align="left">Name</th>
-<th width="50%" align="left">Description</th>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>ADO.Identifier</td>
-<td>id</td>
-<td>the storage identifier</td>
-</tr>
-<tr>
-<td>int</td>
-<td></td>
-<td>version</td>
-<td>the storage data version.</td>
-</tr>
-<tr>
-<td>DATETIME</td>
-<td>Time</td>
-<td>create_date</td>
-<td>the local store creation date</td>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>AWA.Storages.Models.Storage_Type</td>
-<td>storage_type</td>
-<td>the storage type.</td>
-</tr>
-<tr>
-<td>VARCHAR(256)</td>
-<td>String</td>
-<td>uri</td>
-<td>the storage specific URI</td>
-</tr>
-<tr>
-<td>VARCHAR(256)</td>
-<td>String</td>
-<td>name</td>
-<td>the storage name or filename</td>
-</tr>
-<tr>
-<td>VARCHAR(256)</td>
-<td>String</td>
-<td>mime_type</td>
-<td>the content mime type</td>
-</tr>
-<tr>
-<td>BIGINT</td>
-<td>Integer</td>
-<td>file_size</td>
-<td>the content size</td>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>Storage_Data</td>
-<td>storage_id</td>
-<td>the storage that this local store refers to.</td>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>AWA.Workspaces.Models.Workspace</td>
-<td>workspace_id</td>
-<td>the workspace that this storage belongs to.</td>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>Storage_Folder</td>
-<td>folder_id</td>
-<td>the storage folder that this storage belongs to.</td>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>AWA.Users.Models.User</td>
-<td>owner_id</td>
-<td>the storage file owner (or user who uploaded the document).</td>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>Storage</td>
-<td>original_id</td>
-<td>the original storage file that this storage instance refers to.</td>
-</tr>
-</table>
-
-<h4>AWA.Storages.Models.Store_Local</h4><p>The local store record is created when a copy of the data
-is needed on the local file system.  The creation date refers to the date when
-the data was copied on the local file system.  The expiration date indicates a
-date after which the local file can be removed from the local file system.</p><table width="100%">
-<tr>
-<th width="15%" align="left">Type</th>
-<th width="15%" align="left">Ada</th>
-<th width="20%" align="left">Name</th>
-<th width="50%" align="left">Description</th>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>ADO.Identifier</td>
-<td>id</td>
-<td>the local storage identifier</td>
-</tr>
-<tr>
-<td>int</td>
-<td></td>
-<td>version</td>
-<td>the local storage version.</td>
-</tr>
-<tr>
-<td>DATETIME</td>
-<td>Time</td>
-<td>create_date</td>
-<td>the local store creation date</td>
-</tr>
-<tr>
-<td>DATETIME</td>
-<td>Time</td>
-<td>expire_date</td>
-<td>the local store expiration date</td>
-</tr>
-<tr>
-<td>VARCHAR(256)</td>
-<td>String</td>
-<td>path</td>
-<td>the local store path</td>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>Integer</td>
-<td>store_version</td>
-<td>the storage version that this local store represents</td>
-</tr>
-<tr>
-<td>TINYINT</td>
-<td>Boolean</td>
-<td>shared</td>
-<td>whether the local store file can be shared or not</td>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>Storage</td>
-<td>storage_id</td>
-<td>the storage that this local store refers to.</td>
-</tr>
-</table>
-
-
 
 
 ----

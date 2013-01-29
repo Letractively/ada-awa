@@ -15,7 +15,7 @@ This is a static definition of the permission that will be used to ask to verify
 permission.  The permission is given a unique name that will be used in configuration files:
 
 {{{
-  package ACL_Create_Post is new Security.Permissions.Permission_ACL ("blog-create-post");
+  package ACL_Create_Post is new Security.Permissions.Definition ("blog-create-post");
 }}}
 
 === Checking for a permission ===
@@ -64,47 +64,6 @@ entity to the user.  This is done easily with the `Add_Permission` procedure:
 }}}
 
 == Data Model ==
-<h4>AWA.Permissions.Models.ACL</h4><p>Access control</p><table width="100%">
-<tr>
-<th width="15%" align="left">Type</th>
-<th width="15%" align="left">Ada</th>
-<th width="20%" align="left">Name</th>
-<th width="50%" align="left">Description</th>
-</tr>
-<tr>
-<td>BIGINT</td>
-<td>ADO.Identifier</td>
-<td>id</td>
-<td>the unique ACL id</td>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>ADO.Entity_Type</td>
-<td>entity_type</td>
-<td>the entity type</td>
-</tr>
-<tr>
-<td>BIGINT</td>
-<td>ADO.Identifier</td>
-<td>user_id</td>
-<td>the user identifier</td>
-</tr>
-<tr>
-<td>BIGINT</td>
-<td>ADO.Identifier</td>
-<td>entity_id</td>
-<td>the entity identifier</td>
-</tr>
-<tr>
-<td>TINYINT</td>
-<td>boolean</td>
-<td>writeable</td>
-<td>whether the entity is writeable</td>
-</tr>
-</table>
-
-
-
 
 == Queries ==
 

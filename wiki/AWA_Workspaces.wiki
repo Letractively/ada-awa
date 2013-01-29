@@ -26,98 +26,13 @@ same database.
 </tr>
 <tr>
 <td>workspaces-create</td>
-<td>workspace</td>
+<td>awa_workspace</td>
 <td></td>
 </tr>
 </table>
 
 
 == Data Model ==
-<h4>AWA.Workspaces.Models.Workspace</h4><p>
-The workspace allows to group all together the different
-application entities which belong to a user or a set of collaborating users.
-Other entities, for example a Blog, a Wiki space, will link to a
-single workspace.
-
-The workspace has members which are allowed to access the entities
-that are part of the workspace.  A workspace owner decides which user
-is part of the workspace or not.
-</p><table width="100%">
-<tr>
-<th width="15%" align="left">Type</th>
-<th width="15%" align="left">Ada</th>
-<th width="20%" align="left">Name</th>
-<th width="50%" align="left">Description</th>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>ADO.Identifier</td>
-<td>id</td>
-<td>the workspace identifier.</td>
-</tr>
-<tr>
-<td>int</td>
-<td></td>
-<td>version</td>
-<td>the storage data version.</td>
-</tr>
-<tr>
-<td>DATETIME</td>
-<td>Time</td>
-<td>create_date</td>
-<td>the workspace creation date.</td>
-</tr>
-<tr>
-<td>BIGINT</td>
-<td>AWA.Users.Models.User</td>
-<td>owner_fk</td>
-<td>the workspace owner.</td>
-</tr>
-</table>
-
-<h4>AWA.Workspaces.Models.Member</h4><p>
-The workspace member indicates the users who are part of the workspace.
-</p><table width="100%">
-<tr>
-<th width="15%" align="left">Type</th>
-<th width="15%" align="left">Ada</th>
-<th width="20%" align="left">Name</th>
-<th width="50%" align="left">Description</th>
-</tr>
-<tr>
-<td>BIGINT</td>
-<td>ADO.Identifier</td>
-<td>id</td>
-<td>the member identifier.</td>
-</tr>
-<tr>
-<td>int</td>
-<td></td>
-<td>version</td>
-<td>the workspace member version.</td>
-</tr>
-<tr>
-<td>DATETIME</td>
-<td>Time</td>
-<td>create_date</td>
-<td>the member creation date.</td>
-</tr>
-<tr>
-<td>BIGINT</td>
-<td>AWA.Users.Models.User</td>
-<td>user_fk</td>
-<td>the workspace member.</td>
-</tr>
-<tr>
-<td>INTEGER</td>
-<td>Workspace</td>
-<td>workspace_fk</td>
-<td>the workspace.</td>
-</tr>
-</table>
-
-
-
 
 
 ----

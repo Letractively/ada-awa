@@ -43,7 +43,11 @@ to load the module configuration.
 The module is configured by using an XML or a properties file.
 The configuration file is used to define:
 
-  * the Ada beans that the module defines and uses,  * the events that the module wants to receive and the action    that must be performed when the event is posted,  * the permissions that the module needs and how to check them,  * the navigation rules which are used for the module web interface,  * the servlet and filter mappings used by the module
+  * the Ada beans that the module defines and uses,
+  * the events that the module wants to receive and the action that must be performed when the event is posted,
+  * the permissions that the module needs and how to check them,
+  * the navigation rules which are used for the module web interface,
+  * the servlet and filter mappings used by the module
 
 The module configuration is located in the *config* directory
 and must be the name of the module followed by the file extension
