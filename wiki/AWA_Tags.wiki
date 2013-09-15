@@ -64,6 +64,18 @@ When the form is submitted and validated, the procedure <tt>Set_Added</tt> and
 added and removed.  These operations are called in the <tt>UPDATE_MODEL_VALUES</tt>
 phase (ie, before calling the action's bean operation).
 
+=== Tag cloud ===
+The <tt>awa:tagCloud</tt> component displays a list of tags as a tag cloud.
+The tags list passed in the <tt>value</tt> attribute must inherit from the
+<tt>Tag_Info_List_Bean</tt> type which indicates for each tag the number of
+times it is used.
+
+{{{
+  <awa:tagCloud value='#{questionTagList}' id='cloud' styleClass="tag-cloud"
+                var="tagName" rows="30"
+                tagLink="#{contextPath}/questions/tagged.html?tag=#{tagName}"
+                tagClass="tag-link"/>
+}}}
 
 
 ----
