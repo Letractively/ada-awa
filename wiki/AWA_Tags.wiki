@@ -36,6 +36,21 @@ And registered in the `Initialize_Modules` procedure by using:
             URI    => "tags",
             Module => App.Tag_Module'Access);
 }}}
+== Tag Beans ==
+Several bean types are provided to represent and manage a list of tags.
+
+=== Tag_List_Bean ===
+The <tt>Tag_List_Bean</tt> holds a list of tags and provides operations used by the
+<tt>awa:tagList</tt> component to add or remove tags within a <tt>h:form</tt> component.
+
+=== Tag_Search_Bean ===
+The <tt>Tag_Search_Bean</tt> is dedicated to searching for tags that start with a given
+pattern.
+
+=== Tag_Info_List_Bean ===
+The <tt>Tag_Info_List_Bean</tt> holds a collection of tags with their weight.  It is used
+by the <tt>awa:tagCloud</tt> component.
+
 == Tags Component ==
 
 === Displaying a list of tags ===
