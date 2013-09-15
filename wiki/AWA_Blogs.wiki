@@ -29,6 +29,14 @@ The *blogs* plugin is a small blog application which allows users to publish art
 <td>blog</td>
 <td>Information about the current blog.</td>
 </tr>
+<tr>
+<td>blogTagSearch</td>
+<td>The blog tag search bean.</td>
+</tr>
+<tr>
+<td>blogTagCloud</td>
+<td>A list of tags associated with all post entities.</td>
+</tr>
 </table><h3>Permissions</h3><table width="100%">
 <tr>
 <th width="20%" align="left">Name</th>
