@@ -11,17 +11,26 @@ of a web application.
 
 The first part [http://blog.vacs.fr/vacs/blogs/post.html?post=2014/05/08/Ada-Web-Application-Setting-up-the-project Setting up the project] explains how to setup a new project.
 
+<wiki:video url="http://www.youtube.com/watch?v=Qah-cyt7Oxc"/>
+
+
 = Step 2: Building the UML model =
 
 The [http://blog.vacs.fr/vacs/blogs/post.html?post=2014/05/18/Ada-Web-Application--Building-the-UML-model Building the UML model] part describes
 how to design a UML model for the web application in order to modelize
 the database tables and get some code generated automatically.
 
+
+<wiki:video url="https://www.youtube.com/watch?v=Mwo6Q2NCsIY"/>
+
 = Step 3: Creating a review =
 
 The [http://blog.vacs.fr/vacs/blogs/post.html?post=2014/06/14/Review-Web-Application-Creating-a-review Review Web Application: Creating a review]
 describes how to use the UML model and the Ada implementation that was
 generated in order to add a review in the database.
+
+
+<wiki:video url="https://www.youtube.com/watch?v=Me7QR5dyPjQ"/>
 
 = Step 4: Listing the reviews =
 The [http://blog.vacs.fr/vacs/blogs/post.html?post=2014/07/19/Review-Web-Application-Listing-the-reviews Review Web Application: Listing the reviews] deals with the database queries and implementation to list
